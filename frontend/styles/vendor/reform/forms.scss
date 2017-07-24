@@ -1,0 +1,126 @@
+// Forms
+@import 'variables';
+
+form {
+  &.is-vertical {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    input[type="submit"] {
+      margin: $base-spacing 0;
+    }
+  }
+}
+
+input,
+select,
+textarea {
+  &.is-error {
+    border: $form-border solid $danger-red !important;
+  }
+}
+
+
+input[type="number"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border-radius: $radius;
+  box-shadow: none;
+  font-size: 1rem;
+  height: $form-height;
+  padding: 0 10px;
+  position: relative;
+  vertical-align: top;
+  background-color: white;
+  border: $form-border solid $form-border-color;
+  color: #363636;
+  max-width: 100%;
+  line-height: 2rem;
+
+  &:focus {
+    border-color: $focus-outline-color;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  vertical-align: baseline;
+  cursor: pointer;
+  cursor: pointer;
+  vertical-align: top;
+  height: $form-height;
+}
+
+
+textarea {
+  height: inherit;
+  min-height: $form-height*2;
+  padding: 4px 6px !important;
+}
+
+select {
+  font-size: 1rem;
+  height: $form-height;
+  background-color: white;
+  border: $form-border solid $form-border-color;
+
+  &:focus, &:hover {
+    border-color: $focus-outline-color;
+  }
+}
+
+
+label {
+  color: #363636;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: $form-height;
+}
+
+
+input,
+select,
+textarea {
+  display: block;
+  height: 2rem;
+  min-width: 100%;
+
+  @include tablet {
+    display: initial;
+    min-width: inherit;
+  }
+}
+
+@include tablet {
+  label + input,
+  label + textarea,
+  label + select {
+    margin-left: $base-spacing;
+  }
+}
+
+
+input[disabled],
+input.is-disabled,
+textarea[disabled],
+textarea.is-disabled {
+  pointer-events: none;
+  opacity: $disabled-opacity;
+}
+
+
+@include tablet {
+  .input-control {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+
+    & label:not(:first-child) {
+      margin-left: $base-spacing;
+    }
+  }
+}

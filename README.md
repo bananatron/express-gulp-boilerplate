@@ -27,5 +27,7 @@ gulp
 - HTML5 Boilerplate
 - SCSS Compilation
 - Sensible gitignore
+- Ready for [Vue](https://vuejs.org) components
+- Ready for [Sentry](http://sentry.io)
 
 

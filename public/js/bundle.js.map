@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["entry.js"],"sourcesContent":["// Entry point for all JS\n\nrequire('./component.js');\nrequire('./tests/test.js');\n"],"file":"bundle.js"}

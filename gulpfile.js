@@ -6,18 +6,30 @@ var minify = require('gulp-clean-css');
 var sourcemaps = require('gulp-sourcemaps');
 var nodemon = require('gulp-nodemon');
 
+// var babel = require('gulp-babel');
+var browserify = require('gulp-browserify');
+var babelify = require('babelify');
+var rename = require('gulp-rename');
+
 // Server start
 gulp.task('default', function () {
-  gulp.watch(['frontend/styles/*', 'frontend/scss/vendor/*'], ['styles']);
+
+  gulp.start('js');
+  gulp.watch(['frontend/js/**/*'], ['js']);
+
+  gulp.start('styles');
+  gulp.watch(['frontend/styles/*', 'frontend/styles/vendor/**/*'], ['styles']);
 
   nodemon({
-    script: 'bin/www'
-  , ext: 'js html'
-  , env: { 'NODE_ENV': 'development' }
+    // verbose: true,
+    script: 'bin/www',
+    ext: 'js html',
+    ignore: ['frontend/**/*', 'gulpfile.js', 'public/**/*'],
+    env: { 'NODE_ENV': 'development' }
   })
 })
 
-// Style compilation and minification
+// CSS
 gulp.task('styles', function() {
   return gulp.src([
       'frontend/styles/*',
@@ -30,7 +42,22 @@ gulp.task('styles', function() {
       browsers: ['last 4 versions', '> 10%'],
       remove: false // Don't strip old prefixes
     }))
-    .pipe(minify({compatibility: 'ie8'})) // Minify
+    .pipe(minify({compatibility: 'ie9'})) // Minify
     .pipe(sourcemaps.write('/')) // Output sourcemaps
     .pipe(gulp.dest('public/stylesheets/')); // Output file
+});
+
+// JS
+gulp.task('js', function() {
+  return gulp.src('frontend/js/entry.js')
+    .pipe(sourcemaps.init()) // Init sourcemaps
+      .pipe(browserify({
+        insertGlobals : true,
+        transform: ['babelify'],
+        debug : true //TODO change for production
+      }))
+
+      .pipe(rename('bundle.js'))
+    .pipe(sourcemaps.write('/')) // Output sourcemaps
+    .pipe(gulp.dest('public/js'))
 });

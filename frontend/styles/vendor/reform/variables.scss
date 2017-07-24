@@ -1,0 +1,48 @@
+$radius: 5px;
+$color-primary: black;
+$color-text-primary: white;
+$color-highlight: rgba(0, 255, 255, 0.13);
+$vertical-spacing: 24px;
+$form-height: 2.25em;
+
+
+$base-spacing: $vertical-spacing/2;
+
+$button-border: 2px;
+$button-border-color: black;
+
+$form-border: 1px;
+$form-border-color: rgba(0, 0, 0, 0.2);
+
+$focus-outline-color: $color-primary;
+
+$disabled-opacity: 0.6;
+
+$danger-red: #e64646;
+
+$tablet: "(min-width: 768px)";
+$tablet_only: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+$font-stack: -apple-system, BlinkMacSystemFont, "Droid Sans", "Helvetica Neue", "Helvetica", monospace, sans-serif !important;
+$font-stack-overpass: "Overpass Mono", -apple-system, BlinkMacSystemFont, "Helvetica", "Helvetica Neue", "Helvetica", "Arial", monospace, sans-serif !important;
+$font-stack-raleway: "Raleway", -apple-system, BlinkMacSystemFont, "Helvetica", "Helvetica Neue", "Helvetica", "Arial", monospace, sans-serif !important;
+
+@mixin desktop {
+  @media #{$desktop} {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media #{$tablet} {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media #{$tablet_only} {
+    @content;
+  }
+}
+
